@@ -1,14 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
 
 
 extern  int ft_strlen(const char *s);
 extern  int ft_strcmp(const char *s1, const char *s2);
 extern  char * ft_strcpy(char *dst, const char  *src);
+extern  ssize_t ft_write(int fd, const void *s, size_t cont);
+extern  ssize_t ft_read(int fd, void *d, size_t cont);
+extern  char   *ft_strdup(char *S);
 int     main()
 {
-
+/*
   printf("-------Ft_Strlen-------------\n\n");
 
     const char *s = "labhairi mouaadkjfjekje v ekjfekrjgekrger erkgkrejgkrjger gerkgjerkgner ";
@@ -22,27 +28,50 @@ int     main()
   printf("--------Ft_Strcmp-------------\n\n");
     const char *stc= "labhairimouaad";
     const char *stc1= "";
-    const char *stc2= "labksjdkjkjskjdksjdksj";
+    const char *stc2= "labhairimouaa1";
 
-  printf("ft_strcmp === > %d\n", ft_strcmp(stc, stc1));
-  printf("strcmp === > %d\n", strcmp(stc, stc1));
+  printf("ft_strcmp_v1 === > %d\n", ft_strcmp(stc, stc1));
+  printf("strcmp_v1 === > %d\n", strcmp(stc, stc1));
 
-  printf("ft_strcmp === > %d\n", ft_strcmp(stc, stc));
-  printf("strcmp === > %d\n", strcmp(stc, stc));
+  printf("ft_strcmp_v2 === > %d\n", ft_strcmp(stc, stc));
+  printf("strcmp_v2 === > %d\n", strcmp(stc, stc));
 
-  printf("ft_strcmp === > %d\n", ft_strcmp(stc, stc2));
-  printf("strcmp === > %d\n", strcmp(stc, stc2));
+  printf("ft_strcmp_v3 === > %d\n", ft_strcmp(stc, stc2));
+  printf("strcmp_v3 === > %d\n", strcmp(stc, stc2));
 
-  printf("ft_strcmp === > %d\n", ft_strcmp(stc1, stc2));
-  printf("strcmp === > %d\n", strcmp(stc1, stc2));
-
+  printf("ft_strcmp_v4 === > %d\n", ft_strcmp(stc1, stc2));
+  printf("strcmp_v4 === > %d\n", strcmp(stc1, stc2));
+*/
   printf("--------Ft_strcpy------------\n\n");
     const char *src = "labhairi mouaad";
-    char        dst[20];
+    char        dst[500];
 
-    printf("ft_strcmp == > %s\n", ft_strcpy(dst, src));
-    printf("strcmp == > %s\n", strcpy(dst, src));
+    printf("ft_strcpy_v1 == > %s\n", ft_strcpy(dst, src));
+    printf("strcpy_v1 == > %s\n", strcpy(dst, src));
 
-    printf("ft_strcmp ==> %s\n", ft_strcpy(dst, ""));
-    printf("strcmp ==> %s\n", strcpy(dst, ""));
+    printf("ft_strcpy_v2 ==> %s\n", ft_strcpy(dst, ""));
+    printf("strcpy_v2 ==> %s\n", strcpy(dst, ""));
+
+//  printf ("----------FT_write------------------\n\n");
+
+// printf("write return == > %zd\n", write(-1, "labhairimouaad\n", 15));
+ //printf("write return == > %zd\n", ft_write(-1, "labhairimouaad\n", 15));
+
+// printf("write return == > %zd\n", ft_write(-1,));
+ 
+ 
+ //printf("write return == > %zd\n", ft_write(4, "1d", -2));
+
+  printf("-----------Ft_read---------\n\n");
+  int fd = open("main.c", O_RDONLY);
+  char *str = calloc(sizeof(char) , 1000); 
+  printf("==> %zd errno -> %d\n", read(-1, str, 1000), errno);
+  printf("==> %zd errno -> %d\n", ft_read(-1, str, 1000), errno);
+  printf("===> %zd\n", write(1, str, 1000));
+  free(str);
+  printf ("----------Ft_strdup---------------\n\n");
+  printf("strdup ==== > %lu\n", strlen(strdup("labhairi")));
+  printf("ft_strdup ==== > %lu\n", strlen(ft_strdup("labhairi")));
+
+  return (0);
 }
