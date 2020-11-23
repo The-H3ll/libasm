@@ -14,7 +14,7 @@ extern  ssize_t ft_read(int fd, void *d, size_t cont);
 extern  char   *ft_strdup(char *S);
 int     main()
 {
-/*
+
   printf("-------Ft_Strlen-------------\n\n");
 
     const char *s = "labhairi mouaadkjfjekje v ekjfekrjgekrger erkgkrejgkrjger gerkgjerkgner ";
@@ -41,26 +41,27 @@ int     main()
 
   printf("ft_strcmp_v4 === > %d\n", ft_strcmp(stc1, stc2));
   printf("strcmp_v4 === > %d\n", strcmp(stc1, stc2));
-*/
+
   printf("--------Ft_strcpy------------\n\n");
     const char *src = "labhairi mouaad";
-    char        dst[500];
-
-    printf("ft_strcpy_v1 == > %s\n", ft_strcpy(dst, src));
+    char        *dst;
+    if (!(dst = (char *) calloc(sizeof(char), 1000)))
+      return (-1);
     printf("strcpy_v1 == > %s\n", strcpy(dst, src));
+    printf("ft_strcpy_v1 == > %s\n", ft_strcpy(dst, src));
 
-    printf("ft_strcpy_v2 ==> %s\n", ft_strcpy(dst, ""));
     printf("strcpy_v2 ==> %s\n", strcpy(dst, ""));
+    printf("ft_strcpy_v2 ==> %s\n", ft_strcpy(dst, ""));
 
-//  printf ("----------FT_write------------------\n\n");
+  printf ("----------FT_write------------------\n\n");
 
-// printf("write return == > %zd\n", write(-1, "labhairimouaad\n", 15));
- //printf("write return == > %zd\n", ft_write(-1, "labhairimouaad\n", 15));
+    char *strr = "labhairimouad\n";
+    int i = strlen(strr);
+ //printf("write return == > %zd\n", write(-1, strr, i));
+printf("write return == > %zd\n", ft_write(1, strr, i));
 
-// printf("write return == > %zd\n", ft_write(-1,));
- 
- 
- //printf("write return == > %zd\n", ft_write(4, "1d", -2));
+printf("write return == > %zd\n", write(1, strr, i));
+printf("write return == > %zd\n", ft_write(1, strr, 15));
 
   printf("-----------Ft_read---------\n\n");
   int fd = open("main.c", O_RDONLY);
