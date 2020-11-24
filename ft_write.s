@@ -2,14 +2,13 @@ extern ___error
 section .text
 global   _ft_write:
 _ft_write:
-   mov rax, 0x2000004
+   mov rax, 0x2000004 ; moving this specific number to call read with syscall
    syscall
-   jc error
+   jc error ; Jump if carryflag is set by syscall
    ret
 error:
-   mov   r12, rax
-   mov   rax, 0
+   push rax  ; Saving the content to use rax in errno
    call  ___error
-   mov   [rax], r12
+   pop rax  ; returning the content to the stack
    mov   rax, -1
    ret

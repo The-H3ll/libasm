@@ -20,12 +20,13 @@ global  _ft_strdup:
 mov r11, 0
 _ft_strdup:
     call _ft_strlen  ; calling ft_strlen function
+    add rax,1       ; adding 1 for the terminating byte
     mov r11, rax    ; moving the content of rax to the r11 register 
     push rdi        ; we push the content of rdi to the stack to use the register
     mov  rdi, r11   ; moving the register to rdi because malloc take only from the first parametre
     mov rax, 0      ;   set rax to 0
-    call _malloc
-    cmp rax, 0
+    call _malloc    ; calling malloc function
+    cmp rax, 0      ; comparing the return with NULL
     je error
     pop rdi         ;   return the content of rdi
     mov rsi, rdi    ; 

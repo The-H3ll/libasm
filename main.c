@@ -12,6 +12,7 @@ extern  char * ft_strcpy(char *dst, const char  *src);
 extern  ssize_t ft_write(int fd, const void *s, size_t cont);
 extern  ssize_t ft_read(int fd, void *d, size_t cont);
 extern  char   *ft_strdup(char *S);
+
 int     main()
 {
 
@@ -19,12 +20,11 @@ int     main()
 
     const char *s = "labhairi mouaadkjfjekje v ekjfekrjgekrger erkgkrejgkrjger gerkgjerkgner ";
     const char *s1 = "";
-    printf("ft_strlen == > %d \n", ft_strlen(s));
     printf("strlen == > %lu \n", strlen(s));
+    printf("ft_strlen == > %d \n", ft_strlen(s));
     
-    printf("ft_strlen == > %d \n", ft_strlen(s1));
     printf("strlen == > %lu \n", strlen(s1));
-  
+    printf("ft_strlen == > %d \n", ft_strlen(s1));
   printf("--------Ft_Strcmp-------------\n\n");
     const char *stc= "labhairimouaad";
     const char *stc1= "";
@@ -57,22 +57,26 @@ int     main()
 
     char *strr = "labhairimouad\n";
     int i = strlen(strr);
- //printf("write return == > %zd\n", write(-1, strr, i));
-printf("write return == > %zd\n", ft_write(1, strr, i));
+ printf("write return == > %zd errno ==> %d\n", write(-1, strr, i), errno);
+printf("write return == > %zd errno ==> %d\n", ft_write(-1, strr, i), errno);
 
 printf("write return == > %zd\n", write(1, strr, i));
-printf("write return == > %zd\n", ft_write(1, strr, 15));
+printf("write return == > %zd\n", ft_write(1, strr, i));
 
   printf("-----------Ft_read---------\n\n");
   int fd = open("main.c", O_RDONLY);
   char *str = calloc(sizeof(char) , 1000); 
-  printf("==> %zd errno -> %d\n", read(-1, str, 1000), errno);
-  printf("==> %zd errno -> %d\n", ft_read(-1, str, 1000), errno);
-  printf("===> %zd\n", write(1, str, 1000));
+  printf("==> %zd errno -> %d\n", read(fd, str, 1000), errno);
+  printf("==> %zd errno -> %d\n", ft_read(fd, str, 1000), errno);
   free(str);
   printf ("----------Ft_strdup---------------\n\n");
   printf("strdup ==== > %lu\n", strlen(strdup("labhairi")));
   printf("ft_strdup ==== > %lu\n", strlen(ft_strdup("labhairi")));
 
+  printf("strdup ==== > %s\n", strdup("wohfwohfoewhfeowfheowbfeowfeowfeowijfoew"));
+  printf("strdup ==== > %s\n", ft_strdup("wohfwohfoewhfeowfheowbfeowfeowfeowijfoew"));
+
+  printf("strdup ===== > %s\n", strdup(""));  
+  printf("strdup ===== > %s\n", ft_strdup(""));  
   return (0);
 }
